@@ -1,6 +1,6 @@
 # BVOnTheRoad-Front
 
-## Setup dev
+### Setup dev
 ```
 yarn install (OU) npm i 
 yarn serve (OU) npm run serve
@@ -11,3 +11,6 @@ yarn install (OU) npm i
 yarn build (OU) npm run build
 ```
 
+## Fonctionalités
+
+- Projet fait avec Vue.js
