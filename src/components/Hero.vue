@@ -1,10 +1,12 @@
 <template>
-	<div class="hero">
-		<div class="left">
-			<div class="title">OnTheRoad</div>
-			<div class="subtitle">Le cinéma chez vous</div>
+	<div class="heroWrapper">
+		<div class="hero">
+			<div class="left">
+				<div class="title">OnTheRoad</div>
+				<div class="subtitle">Le cinéma chez vous</div>
+			</div>
+			<img src="../assets/hero.svg" alt="" />
 		</div>
-		<img src="../assets/hero.svg" alt="" />
 	</div>
 </template>
 
@@ -15,12 +17,18 @@
 </script>
 
 <style scoped>
+	.heroWrapper {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
 	.hero {
 		display: flex;
 		height: max-content;
 		justify-content: space-around;
 		align-items: center;
 		width: 100%;
+		max-width: 1100px;
 		flex: 0 0 auto;
 	}
 	.left {
@@ -31,11 +39,12 @@
 	}
 	.left .title {
 		font-family: "Satisfy", display;
-		font-size: 80px;
+		font-size: 90px;
 	}
 	.left .subtitle {
 		font-weight: 300;
-		font-size: 30px;
+		margin-top: 7px;
+		font-size: 28px;
 		line-height: 109%;
 	}
 	img {
