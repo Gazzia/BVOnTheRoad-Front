@@ -1,23 +1,16 @@
 <template>
 	<router-link class="navItem" :class="{selected}" :to="route">
+		<InlineSvg :src="getImgUrl(icon)" :class="{selected}"></InlineSvg>
 		{{ label }}
-		<inline-svg
-			:src="getImgUrl(icon)"
-			transformSource="transformSvg"
-			@loaded="svgLoaded($event)"
-			@unloaded="svgUnloaded()"
-			@error="svgLoadError($event)"
-			height="15"
-			fill="white"
-			:class="{selected}"
-		></inline-svg>
 	</router-link>
 </template>
 
 <script>
+	import InlineSvg from "vue-inline-svg";
 	export default {
 		name: "NavItem",
 		props: ["label", "route", "icon", "selected"],
+		components: {InlineSvg},
 		methods: {
 			getImgUrl(pet) {
 				var images = require.context("@/assets/icons/", false, /\.svg$/);
@@ -34,6 +27,7 @@
 		align-items: center;
 		font-size: 14px;
 		gap: 7px;
+		transition: 0.2s;
 	}
 	.navItem,
 	.navItem:visited,
@@ -47,6 +41,8 @@
 
 	svg {
 		height: 15px;
+		fill: white;
+		transition: 0.2s;
 	}
 	.navItem.selected svg {
 		fill: #42f056;
