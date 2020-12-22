@@ -87,9 +87,6 @@
 				shows: [{}],
 			};
 		},
-		mounted() {
-			console.log(this.$route.path);
-		},
 		created() {
 			fetch("https://breizhvideo.herokuapp.com/villages")
 				.then((response) => response.json())
