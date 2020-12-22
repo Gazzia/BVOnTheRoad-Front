@@ -24,6 +24,7 @@
 		justify-content: center;
 		align-items: center;
 		gap: 10px;
+		flex: 1 1 auto;
 	}
 	.title {
 		font-family: "Satisfy", sans-serif;
