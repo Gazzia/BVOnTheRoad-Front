@@ -27,7 +27,11 @@
 			></NavItem>
 		</Nav>
 	</Header>
-	<router-view />
+	<router-view :villages="villages" :shows="shows" v-slot="slotProps">
+		<transition name="route" mode="out-in">
+			<component :is="slotProps.Component"></component>
+		</transition>
+	</router-view>
 </template>
 
 <style>
@@ -42,6 +46,7 @@
 		flex-grow: 1;
 		flex-direction: column;
 		background-color: #181d23;
+		overflow-x: hidden;
 	}
 	#app {
 		font-family: "Poppins", sans-serif;
@@ -52,6 +57,21 @@
 		flex-grow: 1;
 		flex-direction: column;
 	}
+
+	.route-enter-from,
+	.route-leave-to {
+		opacity: 0;
+		transform: scale(0.97);
+	}
+	.route-enter-active,
+	.route-leave-active {
+		transition: all 0.2s ease;
+	}
+	.route-enter-to,
+	.route-leave-from {
+		opacity: 1;
+		transform: scale(1);
+	}
 </style>
 
 <script>
@@ -61,8 +81,26 @@
 	export default {
 		name: "Home",
 		components: {Header, Nav, NavItem},
+		data() {
+			return {
+				villages: [{}],
+				shows: [{}],
+			};
+		},
 		mounted() {
 			console.log(this.$route.path);
+		},
+		created() {
+			fetch("https://breizhvideo.herokuapp.com/villages")
+				.then((response) => response.json())
+				.then((data) => {
+					this.villages = data;
+				});
+			fetch("https://breizhvideo.herokuapp.com/representations")
+				.then((response) => response.json())
+				.then((data) => {
+					this.shows = data;
+				});
 		},
 	};
 </script>
