@@ -1,6 +1,6 @@
 <template>
 	<Page :padded="true">
-		<Category title="Villages" route="/villages">
+		<Category title="Villages" route="/villages/add">
 			<ItemBox
 				v-for="village in villages"
 				:key="village.id"
@@ -17,7 +17,7 @@
 	import Category from "@/components/Category.vue";
 	import ItemBox from "@/components/ItemBox.vue";
 	export default {
-		name: "",
+		name: "Villages",
 		props: ["villages"],
 		components: {Page, Category, ItemBox},
 		methods: {},
