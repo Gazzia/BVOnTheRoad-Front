@@ -25,6 +25,7 @@
 	.page main {
 		display: flex;
 		flex-grow: 1;
+		flex-direction: column;
 	}
 	.page main.padded {
 		padding: 30px;
