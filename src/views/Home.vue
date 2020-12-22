@@ -6,8 +6,8 @@
 				<ItemBox
 					v-for="village in villages.slice(0, 3)"
 					:key="village.id"
-					:mainText="village.name"
 					:topText="village.postCode"
+					:mainText="village.name"
 					:imgSrc="village.imageUrl"
 				></ItemBox>
 			</Category>
@@ -15,9 +15,9 @@
 				<ItemBox
 					v-for="show in shows.slice(0, 3)"
 					:key="show.id"
-					:mainText="village.name"
-					:topText="village.postCode"
-					:imgSrc="village.imageUrl"
+					:topText="dateStringFromString(show.releaseDate)"
+					:mainText="villageFromShow(show).name"
+					:imgSrc="villageFromShow(show).imageUrl"
 				></ItemBox>
 			</Category>
 		</div>
@@ -34,7 +34,13 @@
 		props: ["villages", "shows"],
 		components: {Page, Hero, Category, ItemBox},
 		methods: {
-			villageFromShow(show) {},
+			villageFromShow(show) {
+				return this.villages.find((v) => v.id == show.village);
+			},
+			dateStringFromString(string) {
+				let date = new Date(string);
+				return date.toLocaleDateString("fr");
+			},
 		},
 	};
 </script>
