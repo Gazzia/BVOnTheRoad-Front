@@ -11,6 +11,9 @@ yarn install (OU) npm i
 yarn build (OU) npm run build
 ```
 
+Maquettage avec Figma,
+API avec Spring Boot,
+Front Vue.js avec routing
 ## Fonctionalités
 
 - Projet fait avec Vue.js
