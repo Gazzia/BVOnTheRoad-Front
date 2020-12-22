@@ -2,8 +2,10 @@
 	<div class="category">
 		<div class="heading" :class="{onHome}">
 			<div class="title">{{ title }}</div>
-			<router-link v-if="onHome" class="button" :to="route">Voir tout</router-link>
-			<router-link v-if="!onHome" class="button" :to="route">+ Ajouter nouveau</router-link>
+			<router-link v-if="onHome && route" class="button" :to="route">Voir tout</router-link>
+			<router-link v-if="!onHome && route" class="button" :to="route"
+				>+ Ajouter nouveau</router-link
+			>
 		</div>
 		<div class="content" :class="{onHome}">
 			<slot></slot>

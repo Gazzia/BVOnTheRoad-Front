@@ -2,9 +2,10 @@ import {createRouter, createWebHistory} from "vue-router";
 import Home from "@/views/Home.vue";
 import Villages from "@/views/Villages.vue";
 import VillageForm from "@/views/VillageForm.vue";
-
 import Shows from "@/views/Shows.vue";
 import ShowForm from "@/views/ShowForm.vue";
+import Show from "@/views/Show.vue";
+import Films from "@/views/Films.vue";
 import NotFound from "@/views/404.vue";
 
 const routes = [
@@ -32,6 +33,17 @@ const routes = [
 		path: "/evenements/add",
 		name: "EvenementForm",
 		component: ShowForm,
+	},
+	{
+		path: "/evenements/:id",
+		name: "Evenement",
+		component: Show,
+		props: true,
+	},
+	{
+		path: "/films",
+		name: "Films",
+		component: Films,
 	},
 	{
 		path: "/:catchAll(.*)",

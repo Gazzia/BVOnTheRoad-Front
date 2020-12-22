@@ -6,6 +6,7 @@
 				<Category title="Villages" route="/villages" :onHome="true" v-if="loaded">
 					<ItemBox
 						v-for="village in villages.slice(0, 3)"
+						:noClick="true"
 						:key="village.id"
 						:topText="village.postCode + ' - ' + getDepartement(village.postCode)"
 						:mainText="village.name"
@@ -14,7 +15,7 @@
 				</Category>
 			</transition>
 			<transition name="fade" mode="out-in">
-				<Category title="Evenements" route="/shows" :onHome="true" v-if="loaded">
+				<Category title="Evenements" route="/evenements" :onHome="true" v-if="loaded">
 					<ItemBox
 						v-for="show in shows.slice(0, 3)"
 						:key="show.id"

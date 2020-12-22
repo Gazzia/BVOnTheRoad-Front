@@ -28,12 +28,20 @@
 		</Nav>
 	</Header>
 	<router-view
+		:loaded="toLoad <= 0"
 		:villages="villages"
 		:shows="shows"
-		:loaded="toLoad <= 0"
+		:films="films"
+		:actors="actors"
+		:preferences="preferences"
+		:categories="categories"
 		v-slot="slotProps"
 		@fetchVillages="fetchVillages"
 		@fetchShows="fetchShows"
+		@fetchFilms="fetchFilms"
+		@fetchActors="fetchActors"
+		@fetchCategories="fetchCategories"
+		@fetchPreferences="fetchPreferences"
 	>
 		<transition name="fade" mode="out-in">
 			<component :is="slotProps.Component"></component>
@@ -105,17 +113,58 @@
 						this.toLoad -= 1;
 					});
 			},
+
+			fetchFilms() {
+				fetch("https://breizhvideo.herokuapp.com/films")
+					.then((response) => response.json())
+					.then((data) => {
+						this.films = data;
+						this.toLoad -= 1;
+					});
+			},
+			fetchActors() {
+				fetch("https://breizhvideo.herokuapp.com/actors")
+					.then((response) => response.json())
+					.then((data) => {
+						this.actors = data;
+						this.toLoad -= 1;
+					});
+			},
+			fetchCategories() {
+				fetch("https://breizhvideo.herokuapp.com/categories")
+					.then((response) => response.json())
+					.then((data) => {
+						this.categories = data;
+						this.toLoad -= 1;
+					});
+			},
+			fetchPreferences() {
+				fetch("https://breizhvideo.herokuapp.com/preferences")
+					.then((response) => response.json())
+					.then((data) => {
+						this.preferences = data;
+						this.toLoad -= 1;
+					});
+			},
 		},
 		data() {
 			return {
 				villages: [{}],
 				shows: [{}],
-				toLoad: 2,
+				movies: [{}],
+				actors: [{}],
+				categories: [{}],
+				preferences: [{}],
+				toLoad: 6,
 			};
 		},
 		created() {
 			this.fetchVillages();
 			this.fetchShows();
+			this.fetchFilms();
+			this.fetchActors();
+			this.fetchCategories();
+			this.fetchPreferences();
 		},
 	};
 </script>

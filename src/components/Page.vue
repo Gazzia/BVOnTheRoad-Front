@@ -10,7 +10,6 @@
 	export default {
 		name: "Page",
 		props: ["padded", "centered"],
-		components: {},
 	};
 </script>
 

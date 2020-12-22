@@ -1,6 +1,6 @@
 <template>
 	<select name="select" @change="$emit('update:modelValue', $event.target.value)">
-		<option :value="null">Sélectionner un village</option>
+		<option :value="null">{{ placeholder }}</option>
 		<option v-for="option in options" :key="option.id" :value="option.id">{{
 			option.name
 		}}</option>
@@ -9,14 +9,9 @@
 
 <script>
 	export default {
-		name: "",
-		props: ["modelValue", "options"],
-		components: {},
-		methods: {},
+		name: "SelectInput",
+		props: ["modelValue", "options", "placeholder"],
 		emits: ["update:modelValue"],
-		data() {
-			return {};
-		},
 	};
 </script>
 

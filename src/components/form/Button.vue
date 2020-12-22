@@ -6,8 +6,6 @@
 	export default {
 		name: "Button",
 		props: ["disabled"],
-		components: {},
-		methods: {},
 	};
 </script>
 
