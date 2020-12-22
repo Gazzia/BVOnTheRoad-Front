@@ -1,6 +1,6 @@
 <template>
 	<div class="page">
-		<main :class="padded ? 'padded' : ''">
+		<main :class="{padded, centered}">
 			<slot></slot>
 		</main>
 	</div>
@@ -9,7 +9,7 @@
 <script>
 	export default {
 		name: "Page",
-		props: ["padded"],
+		props: ["padded", "centered"],
 		components: {},
 	};
 </script>
@@ -29,5 +29,8 @@
 	}
 	.page main.padded {
 		padding: 30px;
+	}
+	.page main.centered {
+		align-items: center;
 	}
 </style>
