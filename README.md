@@ -16,3 +16,4 @@ yarn build (OU) npm run build
 - Projet fait avec Vue.js
 - Page d'accueil avec récapitulatif non exhaustif des derniers shows, et liste non-exh. des villages.
 - Navigation entre les différentes (futures) pages
+- Possibilité d'ajouter et de voir différents villages avec validation des formulaires d'envoi
