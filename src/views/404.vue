@@ -10,7 +10,7 @@
 <script>
 	import Page from "@/components/Page.vue";
 	export default {
-		name: "",
+		name: "404",
 		props: [],
 		components: {Page},
 	};

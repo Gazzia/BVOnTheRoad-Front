@@ -13,7 +13,7 @@
 
 <script>
 	export default {
-		name: "",
+		name: "ItemBox",
 		props: ["imgSrc", "topText", "mainText", "bottomText"],
 		components: {},
 		methods: {},
