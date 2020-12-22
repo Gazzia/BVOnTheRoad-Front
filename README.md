@@ -23,3 +23,10 @@ Front Vue.js avec routing
 - Idem avec les Evenements
 - Idem avec les films, mais lecture seulement
 - Possibilité d'accéder aux détails d'un évènement et d'afficher les propositions de films avec leurs description (si il en a)
+
+## Il manque
+
+- Système de vote
+- Système d'ajout de preferences
+- Modification des Villages et Evenements depuis front
+- Suppression des Villages et Evenements depuis front
