@@ -1,6 +1,6 @@
 <template>
 	<Page :padded="true">
-		<Category title="Villages" route="/villages/add">
+		<Category title="Villages" route="/villages/add" v-if="loaded">
 			<ItemBox
 				v-for="village in villages"
 				:key="village.id"
@@ -19,7 +19,7 @@
 	import deps from "@/deps.js";
 	export default {
 		name: "Villages",
-		props: ["villages"],
+		props: ["villages", "loaded"],
 		components: {Page, Category, ItemBox},
 		methods: {
 			getDepartement(cp) {

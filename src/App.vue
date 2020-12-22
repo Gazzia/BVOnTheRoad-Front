@@ -30,10 +30,12 @@
 	<router-view
 		:villages="villages"
 		:shows="shows"
+		:loaded="toLoad <= 0"
 		v-slot="slotProps"
 		@fetchVillages="fetchVillages"
+		@fetchShows="fetchShows"
 	>
-		<transition name="route" mode="out-in">
+		<transition name="fade" mode="out-in">
 			<component :is="slotProps.Component"></component>
 		</transition>
 	</router-view>
@@ -63,17 +65,17 @@
 		flex-direction: column;
 	}
 
-	.route-enter-from,
-	.route-leave-to {
+	.fade-enter-from,
+	.fade-leave-to {
 		opacity: 0;
 		transform: scale(0.97);
 	}
-	.route-enter-active,
-	.route-leave-active {
+	.fade-enter-active,
+	.fade-leave-active {
 		transition: all 0.2s ease;
 	}
-	.route-enter-to,
-	.route-leave-from {
+	.fade-enter-to,
+	.fade-leave-from {
 		opacity: 1;
 		transform: scale(1);
 	}
@@ -92,6 +94,15 @@
 					.then((response) => response.json())
 					.then((data) => {
 						this.villages = data;
+						this.toLoad -= 1;
+					});
+			},
+			fetchShows() {
+				fetch("https://breizhvideo.herokuapp.com/representations")
+					.then((response) => response.json())
+					.then((data) => {
+						this.shows = data;
+						this.toLoad -= 1;
 					});
 			},
 		},
@@ -99,15 +110,12 @@
 			return {
 				villages: [{}],
 				shows: [{}],
+				toLoad: 2,
 			};
 		},
 		created() {
 			this.fetchVillages();
-			fetch("https://breizhvideo.herokuapp.com/representations")
-				.then((response) => response.json())
-				.then((data) => {
-					this.shows = data;
-				});
+			this.fetchShows();
 		},
 	};
 </script>

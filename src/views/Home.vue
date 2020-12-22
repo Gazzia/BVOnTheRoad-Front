@@ -2,24 +2,28 @@
 	<Page :padded="true">
 		<Hero></Hero>
 		<div class="categories">
-			<Category title="Villages" route="/villages" :onHome="true">
-				<ItemBox
-					v-for="village in villages.slice(0, 3)"
-					:key="village.id"
-					:topText="village.postCode + ' - ' + getDepartement(village.postCode)"
-					:mainText="village.name"
-					:imgSrc="village.imageUrl"
-				></ItemBox>
-			</Category>
-			<Category title="Evenements" route="/shows" :onHome="true">
-				<ItemBox
-					v-for="show in shows.slice(0, 3)"
-					:key="show.id"
-					:topText="dateStringFromString(show.releaseDate)"
-					:mainText="villageFromShow(show).name"
-					:imgSrc="villageFromShow(show).imageUrl"
-				></ItemBox>
-			</Category>
+			<transition name="fade" mode="out-in">
+				<Category title="Villages" route="/villages" :onHome="true" v-if="loaded">
+					<ItemBox
+						v-for="village in villages.slice(0, 3)"
+						:key="village.id"
+						:topText="village.postCode + ' - ' + getDepartement(village.postCode)"
+						:mainText="village.name"
+						:imgSrc="village.imageUrl"
+					></ItemBox>
+				</Category>
+			</transition>
+			<transition name="fade" mode="out-in">
+				<Category title="Evenements" route="/shows" :onHome="true" v-if="loaded">
+					<ItemBox
+						v-for="show in shows.slice(0, 3)"
+						:key="show.id"
+						:topText="'Le ' + dateStringFromString(show.releaseDate) + ' à'"
+						:mainText="villageFromShow(show).name"
+						:imgSrc="villageFromShow(show).imageUrl"
+					></ItemBox>
+				</Category>
+			</transition>
 		</div>
 	</Page>
 </template>
@@ -32,7 +36,7 @@
 	import deps from "@/deps.js";
 	export default {
 		name: "Home",
-		props: ["villages", "shows"],
+		props: ["villages", "shows", "loaded"],
 		components: {Page, Hero, Category, ItemBox},
 		methods: {
 			villageFromShow(show) {
