@@ -27,7 +27,12 @@
 			></NavItem>
 		</Nav>
 	</Header>
-	<router-view :villages="villages" :shows="shows" v-slot="slotProps">
+	<router-view
+		:villages="villages"
+		:shows="shows"
+		v-slot="slotProps"
+		@fetchVillages="fetchVillages"
+	>
 		<transition name="route" mode="out-in">
 			<component :is="slotProps.Component"></component>
 		</transition>
@@ -81,6 +86,15 @@
 	export default {
 		name: "Home",
 		components: {Header, Nav, NavItem},
+		methods: {
+			fetchVillages() {
+				fetch("https://breizhvideo.herokuapp.com/villages")
+					.then((response) => response.json())
+					.then((data) => {
+						this.villages = data;
+					});
+			},
+		},
 		data() {
 			return {
 				villages: [{}],
@@ -88,11 +102,7 @@
 			};
 		},
 		created() {
-			fetch("https://breizhvideo.herokuapp.com/villages")
-				.then((response) => response.json())
-				.then((data) => {
-					this.villages = data;
-				});
+			this.fetchVillages();
 			fetch("https://breizhvideo.herokuapp.com/representations")
 				.then((response) => response.json())
 				.then((data) => {
