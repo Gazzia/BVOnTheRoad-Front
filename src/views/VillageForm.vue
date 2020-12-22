@@ -35,15 +35,18 @@
 		emits: ["fetchVillages"],
 		methods: {
 			allFieldsAreFilled() {
+				//check si tous les champs nécessaires sont remplis
 				let nameFilled = this.village.name.trim() != "";
 				let postCodeFilled = this.village.postCode.trim() != "";
 				return nameFilled && postCodeFilled;
 			},
 			validateAndPostVillage() {
 				const travel = () => {
+					//une fois l'envoi fait, ceci dispatche un évènement vers App.vue pour refetch les Villages et retourner à la liste
 					this.$emit("fetchVillages");
 					this.$router.push("/villages");
 				};
+
 				if (this.allFieldsAreFilled()) {
 					fetch("https://breizhvideo.herokuapp.com/villages", {
 						method: "POST",
