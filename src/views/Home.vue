@@ -6,7 +6,7 @@
 				<ItemBox
 					v-for="village in villages.slice(0, 3)"
 					:key="village.id"
-					:topText="village.postCode"
+					:topText="village.postCode + ' - ' + getDepartement(village.postCode)"
 					:mainText="village.name"
 					:imgSrc="village.imageUrl"
 				></ItemBox>
@@ -29,6 +29,7 @@
 	import Hero from "@/components/Hero.vue";
 	import Category from "@/components/Category.vue";
 	import ItemBox from "@/components/ItemBox.vue";
+	import deps from "@/deps.js";
 	export default {
 		name: "Home",
 		props: ["villages", "shows"],
@@ -40,6 +41,9 @@
 			dateStringFromString(string) {
 				let date = new Date(string);
 				return date.toLocaleDateString("fr");
+			},
+			getDepartement(cp) {
+				return deps.find((d) => d.code == cp.substring(0, 2)).name;
 			},
 		},
 	};
