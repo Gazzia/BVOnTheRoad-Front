@@ -1,6 +1,7 @@
 import {createRouter, createWebHistory} from "vue-router";
 import Home from "@/views/Home.vue";
 import Villages from "@/views/Villages.vue";
+import VillageForm from "@/views/VillageForm.vue";
 import NotFound from "@/views/404.vue";
 
 const routes = [
@@ -14,6 +15,11 @@ const routes = [
 		path: "/villages",
 		name: "Villages",
 		component: Villages,
+	},
+	{
+		path: "/villages/add",
+		name: "VillageForm",
+		component: VillageForm,
 	},
 	{
 		path: "/:catchAll(.*)",
